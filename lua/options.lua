@@ -23,6 +23,22 @@ vim.schedule(function()
   vim.o.clipboard = 'unnamedplus'
 end)
 
+-- https://www.reddit.com/r/neovim/comments/16zb9hh/wsl2_lazyvim_and_clipboard/
+if vim.fn.has('wsl') == 1 then
+    vim.g.clipboard = {
+        name = 'WslClipboard',
+        copy = {
+            ['+'] = 'clip.exe',
+            ['*'] = 'clip.exe',
+        },
+        paste = {
+            ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        },
+        cache_enabled = 0,
+    }
+end
+
 -- Enable break indent
 vim.o.breakindent = true
 

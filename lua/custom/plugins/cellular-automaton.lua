@@ -7,8 +7,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-        vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
-        vim.keymap.set("n", "<leader>gml", "<cmd>CellularAutomaton game_of_life<CR>")
-        -- vim.keymap.set("n", "<leader>sml", "<cmd>CellularAutomaton scramble<CR>")
+        vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = 'Make It Rain' })
+        vim.keymap.set("n", "<leader>gml", "<cmd>CellularAutomaton game_of_life<CR>", { desc = 'Game Of Life' })
     end,
 }

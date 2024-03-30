@@ -12,20 +12,6 @@ return {
     },
     config = function()
         require("neo-tree").setup({
-            -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes/161f7fd5ea0a7365b5fec8a4e39ba0e904e720a1#auto-close-on-open-file
-            -- Auto Close on Open File
-            -- event_handlers = {
-            --     {
-            --         event = "file_opened",
-            --         handler = function(file_path)
-            --             -- auto close
-            --             -- vimc.cmd("Neotree close")
-            --             -- OR
-            --             require("neo-tree.command").execute({ action = "close" })
-            --         end
-            --     },
-            -- },
-
             -- https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes/161f7fd5ea0a7365b5fec8a4e39ba0e904e720a1#harpoon-index
             -- harpoon_index
             filesystem = {
@@ -64,21 +50,7 @@ return {
             },
         })
 
-        -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#open-for-directories-and-change-neovims-directory
-        -- Open For Directories And Change Neovim's Directory
-        local function open_nvim_tree(data)
-            -- buffer is a directory
-            local directory = vim.fn.isdirectory(data.file) == 1
-
-            if not directory then
-                return
-            end
-
-            -- change to the directory
-            vim.cmd.cd(data.file)
-
-            -- open the tree
-            require("nvim-tree.api").tree.open()
-        end
+        -- Keymaps
+        vim.keymap.set("n", "<leader>nt", "<cmd>Neotree toggle<CR>", { desc = 'Toggle [N]eo [T]ree' })
     end,
 }

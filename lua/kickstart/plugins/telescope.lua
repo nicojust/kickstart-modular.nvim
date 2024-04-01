@@ -65,12 +65,19 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          frecency = {
+            db_safe_mode = false
+          }
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'git_diffs')
+      pcall(require("telescope").load_extension, "file_browser")
+      pcall(require("telescope").load_extension, "frecency")
+      pcall(require("telescope").load_extension, "neoclip")
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'

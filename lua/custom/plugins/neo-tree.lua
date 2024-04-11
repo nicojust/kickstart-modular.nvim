@@ -47,10 +47,17 @@ return {
                         { "git_status",   highlight = "NeoTreeDimText" },
                     },
                 },
+
+                follow_current_file = {
+                    enabled = true
+                },
             },
         })
 
         -- Keymaps
-        vim.keymap.set("n", "<leader>nt", "<cmd>Neotree toggle<CR>", { desc = 'Toggle [N]eo [T]ree' })
+        vim.keymap.set("n", "<leader>nt",
+            function() require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() }) end,
+            { desc = 'Toggle [N]eo [T]ree' }
+        )
     end,
 }

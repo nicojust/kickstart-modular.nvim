@@ -11,7 +11,7 @@ return {
         local harpoon = require("harpoon")
         harpoon:setup({})
 
-        vim.keymap.set("n", "<leader>ha", function() harpoon:list():append() end, { desc = 'Add to harpoon' })
+        vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = 'Add to harpoon' })
         vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Show harpoon' })
 
         vim.keymap.set("n", "<leader>h1", function() harpoon:list():select(1) end, { desc = 'Open harpoon buffer 1' })

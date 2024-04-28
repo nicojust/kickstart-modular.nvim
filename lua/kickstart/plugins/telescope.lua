@@ -78,6 +78,7 @@ return {
       pcall(require("telescope").load_extension, "file_browser")
       pcall(require("telescope").load_extension, "frecency")
       pcall(require("telescope").load_extension, "neoclip")
+      pcall(require("telescope").load_extension, "noice")
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'

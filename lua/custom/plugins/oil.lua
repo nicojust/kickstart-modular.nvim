@@ -2,10 +2,11 @@
 
 return {
     'stevearc/oil.nvim',
-    opts = {},
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         require("oil").setup({
+            columns = { "icon" },
+
             -- Set to false if you still want to use netrw.
             default_file_explorer = true,
 
@@ -15,6 +16,10 @@ return {
             },
         })
 
+        -- Open parent directory in current window
         vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+        -- Open parent directory in floating window
+        vim.keymap.set("n", "<space>-", require("oil").toggle_float, { desc = "Open parent directory in floating window" })
     end
 }

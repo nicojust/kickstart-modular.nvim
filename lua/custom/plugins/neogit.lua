@@ -4,12 +4,13 @@
 
 return {
     "NeogitOrg/neogit",
-    branch = 'nightly',
     dependencies = {
-        "nvim-lua/plenary.nvim",
-        "sindrets/diffview.nvim",
+        "nvim-lua/plenary.nvim",  -- required
+        "sindrets/diffview.nvim", -- optional - Diff integration
         "rhysd/committia.vim",
-        "nvim-telescope/telescope.nvim",
+        -- Only one of these is needed, not both.
+        "nvim-telescope/telescope.nvim", -- optional
+        --   "ibhagwan/fzf-lua",              -- optional
     },
     config = true
 }

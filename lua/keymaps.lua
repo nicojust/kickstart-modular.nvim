@@ -51,4 +51,24 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Custom Commands
+vim.api.nvim_create_user_command('GetBranchTicket', function()
+  if vim.fn.system('git rev-parse --is-inside-work-tree') ~= 'true\n' then
+    vim.notify('Not a git repository', vim.log.levels.WARN)
+    return
+  end
+
+  -- https://regex101.com/r/Ls7oAQ/1
+  local branch = vim.fn.system('git rev-parse --abbrev-ref HEAD')
+  local ticket = string.match(branch, '^[0-9]+-([a-zA-Z0-9]+-[a-zA-Z0-9]+)')
+
+  if ticket == nil or ticket == "" then
+    vim.notify('Ticket not found in branch: ' .. branch, vim.log.levels.WARN)
+    return
+  end
+
+  vim.api.nvim_buf_set_lines(0, 0, 0, false, { '[' .. ticket:upper() .. ']' })
+end, { desc = 'Get current git branch ticket' })
+
+vim.keymap.set('n', '<leader>gt', function() vim.cmd('GetBranchTicket') end, { desc = 'Get current git branch ticket' })
 -- vim: ts=2 sts=2 sw=2 et

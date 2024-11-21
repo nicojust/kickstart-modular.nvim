@@ -67,8 +67,9 @@ vim.api.nvim_create_user_command('GetBranchTicket', function()
     return
   end
 
-  vim.api.nvim_buf_set_lines(0, 0, 0, false, { '[' .. ticket:upper() .. ']' })
+  vim.api.nvim_paste('[' .. ticket:upper() .. ']', false, -1)
 end, { desc = 'Get current git branch ticket' })
 
-vim.keymap.set('n', '<leader>gt', function() vim.cmd('GetBranchTicket') end, { desc = 'Get current git branch ticket' })
+vim.keymap.set('n', '<leader>gt', function() vim.cmd('GetBranchTicket') end,
+  { buffer = true, desc = 'Get current git branch ticket' })
 -- vim: ts=2 sts=2 sw=2 et

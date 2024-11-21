@@ -24,7 +24,7 @@ return {
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
       'saghen/blink.cmp',
@@ -198,6 +198,11 @@ return {
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+      -- https://github.com/vuejs/language-tools/issues/3925#issuecomment-2335001467
+      local mason_registry = require('mason-registry')
+      local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+          '/node_modules/@vue/language-server'
+
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -231,7 +236,6 @@ return {
           filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
         },
         volar = {},
-
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },

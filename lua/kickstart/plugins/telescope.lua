@@ -55,17 +55,19 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        pickers = {
-          find_files = {
-            theme = "ivy",
-          }
+        defaults = {
+          history = {
+            path = vim.fs.joinpath(vim.fn.stdpath "data", "databases/telescope_history.sqlite3"),
+            limit = 100,
+          },
         },
+        -- pickers = {
+        --   find_files = {
+        --     theme = "ivy",
+        --   }
+        -- },
         extensions = {
+          wrap_results = true,
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
@@ -77,6 +79,7 @@ return {
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
+      pcall(require("telescope").load_extension, "smart_history")
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'git_diffs')
       pcall(require("telescope").load_extension, "frecency")

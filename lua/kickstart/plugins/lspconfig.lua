@@ -1,4 +1,5 @@
 -- LSP Plugins
+-- TODO: https://github.com/Saghen/blink.cmp
 return {
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
